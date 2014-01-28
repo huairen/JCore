@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{793b0c4e-333f-49dc-aca4-a6440f10f8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{f57ca1d7-f24b-4d93-b548-829e5fa6259d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\gdi">
+      <UniqueIdentifier>{5831a131-6ecc-4b1c-96a8-876aa16edf16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{85bd949f-3478-42f4-bd33-37a3ff4cb872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{98230756-965b-4ecb-9fc3-bc6a37364bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataType">
+      <UniqueIdentifier>{c84a19fe-880d-4405-a07a-a2392da4ffd7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\graphics\JImage.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\stb_image.c">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\lookup3.c">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\resource\JResourceManager.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\gdi\JGdiImage.cpp">
+      <Filter>Graphics\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\gdi\JGdiRender.cpp">
+      <Filter>Graphics\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\JObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\JClassInfo.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\JTypeInfo.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\JPropertyInfo.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DataType\JArray.cpp">
+      <Filter>DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DataType\JHashTable.cpp">
+      <Filter>DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DataType\JList.cpp">
+      <Filter>DataType</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\math\JPoint.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\JRect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\math\JMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\JImage.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\JRender.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource\JResourceManager.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\gdi\JGdiImage.h">
+      <Filter>Graphics\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\gdi\JGdiRender.h">
+      <Filter>Graphics\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\JObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\JClassInfo.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\JTypeInfo.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\JPropertyInfo.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\JGlobalDefine.h" />
+    <ClInclude Include="..\src\DataType\JArray.h">
+      <Filter>DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DataType\JHashTable.h">
+      <Filter>DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DataType\JList.h">
+      <Filter>DataType</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
