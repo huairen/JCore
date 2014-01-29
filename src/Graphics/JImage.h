@@ -1,43 +1,62 @@
 #ifndef JIMAGE_H_
 #define JIMAGE_H_
 
-enum ImageType
-{
-	IMAGE_JPEG,
-	IMAGE_PNG,
-	IMAGE_BMP,
-	IMAGE_GIF,
-};
-
-enum ImageFormat
-{
-	IMAGE_FORMAT_A8,
-	IMAGE_FORMAT_L8,
-
-	IMAGE_FORMAT_R8G8B8,
-	IMAGE_FORMAT_R8G8B8A8,
-};
+#include "JGlobalDefine.h"
 
 class JImage
 {
 public:
+	enum FileFormat
+	{
+		UNKOWN,
+		JPEG,
+		PNG,
+		BMP,
+		GIF,
+	};
+
+	enum PixelFormat
+	{
+		NONE,
+
+		A8,
+		L8,
+
+		R8G8B8,
+		R8G8B8A8,
+	};
+
+public:
 	JImage();
 	virtual ~JImage();
-
-	int GetWidth();
-	int GetHeight();
-	bool HasAlphaChannel();
 
 	virtual bool Load(const char* filename) = 0;
 	virtual int GetHandler() = 0;
 
+	bool LoadFromFile(const char* pFilename);
+	bool LoadFromImageData(const uint8_t* pData, uint32_t nSize);
+
+	inline int GetWidth() { return m_nWidth;}
+	inline int GetHeight() { return m_nHeight; }
+	inline bool HasAlphaChannel() { return m_bAlphaChannel; }
+
+private:
+	FileFormat DetectFormat(const uint8_t* pData, uint32_t nSize);
+	bool CheckPngHeader(const uint8_t* pData, uint32_t nSize);
+	bool CheckJpgHeader(const uint8_t* pData, uint32_t nSize);
+
 protected:
-	const char* m_pFilename;
+	uint8_t *m_pData;
+	uint32_t m_nDataSize;
+
 	int m_nWidth;
 	int m_nHeight;
+
+	FileFormat m_FileType;
+	PixelFormat m_PixelFormat;
+
 	bool m_bAlphaChannel;
-	ImageType m_Type;
-	ImageFormat m_Format;
+	std::string m_FilePath;
 };
 
 
