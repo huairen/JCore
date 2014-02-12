@@ -24,6 +24,7 @@ public:
 	const JList& GetPropertyList();
 
 	bool IsDerivedFrom(JClassInfo *pBaseClass);
+	JClassInfo* GetParentClass();
 
 	static JClassInfo *FindClass(const char* pClassName);
 

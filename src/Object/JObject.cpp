@@ -51,17 +51,27 @@ bool JObject::GetProperty( const char *pPropertyName, char* pBuffer, int nSize )
 void JObject::CopyProperty(JObject* pParent)
 {
 	char szBuff[1024];
-	if(GetClassInfo()->IsDerivedFrom(pParent->GetClassInfo()))
-	{
-		const JList& list = pParent->GetClassInfo()->GetPropertyList();
-		const JPropertyInfo* pProp = (const JPropertyInfo*)list.First();
-		while(pProp != NULL)
-		{
-			if(pProp->GetData(pParent, szBuff, sizeof(szBuff)))
-				SetProperty(pProp->GetName(), szBuff);
+	JClassInfo* pClassThis = GetClassInfo();
+	JClassInfo* pClassParent = pParent->GetClassInfo();
 
-			pProp = (const JPropertyInfo*)list.Next();
+	while(pClassParent != NULL && pClassThis != NULL)
+	{
+		if(pClassParent == pClassThis)
+		{
+			const JList& list = pClassParent->GetPropertyList();
+			const JPropertyInfo* pProp = (const JPropertyInfo*)list.First();
+			while(pProp != NULL)
+			{
+				if(pProp->GetData(pParent, szBuff, sizeof(szBuff)))
+					SetProperty(pProp->GetName(), szBuff);
+
+				pProp = (const JPropertyInfo*)list.Next();
+			}
+
+			pClassParent = pClassParent->GetParentClass();
 		}
+
+		pClassThis = pClassThis->GetParentClass();
 	}
 }
 

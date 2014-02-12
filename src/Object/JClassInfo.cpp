@@ -61,6 +61,11 @@ bool JClassInfo::IsDerivedFrom(JClassInfo *pBaseClass)
 	return false;
 }
 
+JClassInfo* JClassInfo::GetParentClass()
+{
+	return m_pParentClass;
+}
+
 JClassInfo * JClassInfo::FindClass( const char* pClassName )
 {
 	return (JClassInfo*)sm_pClassTable->Find(pClassName);

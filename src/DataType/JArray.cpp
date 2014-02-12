@@ -43,36 +43,12 @@ void* JArray::PopBack()
 	return ((char*)m_pBuffer + (m_nCount * m_nTypeSize));
 }
 
-void* JArray::Increment()
+void* JArray::At(int index)
 {
-	if(m_nCount >= m_nArraySize)
-		Resize(m_nCount + 1);
+	if(index >= m_nCount)
+		return NULL;
 
-	return ((char*)m_pBuffer + (m_nCount++ * m_nTypeSize));
-}
-
-void* JArray::IncrementAt(int index)
-{
-	if(m_nCount >= m_nArraySize)
-		Resize(m_nCount + 1);
-
-	m_nCount++;
-	return ((char*)m_pBuffer + (index * m_nTypeSize));
-}
-
-void* JArray::First()
-{
-	return 0;
-}
-
-void* JArray::Next()
-{
-	return 0;
-}
-
-int JArray::GetCount()
-{
-	return m_nCount;
+	return ((char*)m_pBuffer + (index * m_nTypeSize));;
 }
 
 bool JArray::Resize( int nSize )
@@ -86,8 +62,7 @@ bool JArray::Resize( int nSize )
 		m_pBuffer = m_pBuffer ? realloc(m_pBuffer,mem_size) :
 			malloc(mem_size);
 
-		m_nCount = nSize;
-		m_nArraySize = blocks;
+		m_nArraySize = blocks * JARRAY_BLOCK_SIZE;
 		return true;
 	}
 

@@ -51,9 +51,6 @@
     <ClCompile Include="..\src\object\JPropertyInfo.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\DataType\JArray.cpp">
-      <Filter>DataType</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\DataType\JHashTable.cpp">
       <Filter>DataType</Filter>
     </ClCompile>
