@@ -21,13 +21,15 @@ public:
 	void PushBack(void *obj);
 
 	void* First();
+	const void* First() const;
 	void* Next();
+	const void* Next() const;
 	int GetCount();
 
 private:
 	Node *m_pHead;
 	Node *m_pTail;
-	Node *m_pWork;
+	mutable Node *m_pWork;
 	int m_nCount;
 };
 

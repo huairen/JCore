@@ -19,30 +19,60 @@ JObject::~JObject()
 {
 }
 
-bool JObject::SetProperty( const char *pPropertyName, const char* pValue )
+JPropertyInfo* JObject::FindProperty(const char *pPropertyName)
 {
 	JClassInfo* pClass = GetClassInfo();
-	if(pClass == NULL)
-		return false;
+	if(pClass != NULL)
+	{
+		JPropertyInfo* pProp = pClass->FindProperty(pPropertyName);
+		if(pProp != NULL)
+			return pProp;
+	}
+	
+	return NULL;
+}
 
-	JPropertyInfo* pProp = pClass->FindProperty(pPropertyName);
+bool JObject::SetProperty( const char *pPropertyName, const char* pValue )
+{
+	JPropertyInfo* pProp = FindProperty(pPropertyName);
 	if(pProp == NULL)
 		return false;
-	
-	pProp->SetData(this, pValue);
-	return true;
+	return pProp->SetData(this, pValue);
 }
 
 bool JObject::GetProperty( const char *pPropertyName, char* pBuffer, int nSize )
 {
-	JClassInfo* pClass = GetClassInfo();
-	if(pClass == NULL)
-		return false;
-
-	JPropertyInfo* pProp = pClass->FindProperty(pPropertyName);
+	JPropertyInfo* pProp = FindProperty(pPropertyName);
 	if(pProp == NULL)
 		return false;
+	return pProp->GetData(this, pBuffer, nSize);
+}
 
-	pProp->GetData(this, pBuffer, nSize);
-	return true;
+void JObject::CopyProperty(JObject* pParent)
+{
+	char szBuff[1024];
+	if(GetClassInfo()->IsDerivedFrom(pParent->GetClassInfo()))
+	{
+		const JList& list = pParent->GetClassInfo()->GetPropertyList();
+		const JPropertyInfo* pProp = (const JPropertyInfo*)list.First();
+		while(pProp != NULL)
+		{
+			if(pProp->GetData(pParent, szBuff, sizeof(szBuff)))
+				SetProperty(pProp->GetName(), szBuff);
+
+			pProp = (const JPropertyInfo*)list.Next();
+		}
+	}
+}
+
+JObject* JObject::Clone()
+{
+	JObject* pObj = GetClassInfo()->CreateObject();
+	if(pObj != NULL)
+	{
+		pObj->CopyProperty(this);
+		return pObj;
+	}
+
+	return NULL;
 }

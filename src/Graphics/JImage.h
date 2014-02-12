@@ -36,7 +36,7 @@ public:
 	bool LoadFromFile(const char* pFilename);
 	bool LoadFromImageData(const uint8_t* pData, uint32_t nSize);
 
-	inline int GetWidth() { return m_nWidth;}
+	inline int GetWidth() { return m_nWidth; }
 	inline int GetHeight() { return m_nHeight; }
 	inline bool HasAlphaChannel() { return m_bAlphaChannel; }
 

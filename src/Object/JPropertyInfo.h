@@ -26,10 +26,10 @@ public:
 				  JPropertySetter *pSetter,
 				  JPropertyGetter *pGetter);
 
-	void SetData(JObject* pObject, const char* pValue);
-	void GetData(JObject* pObject, char* pBuffer, int nSize);
+	bool SetData(JObject* pObject, const char* pValue);
+	bool GetData(JObject* pObject, char* pBuffer, int nSize) const;
 
-	inline const char* GetName()
+	inline const char* GetName() const
 	{ return m_pName; }
 
 private:

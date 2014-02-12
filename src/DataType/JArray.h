@@ -15,6 +15,9 @@ public:
 	void PushBack(void *obj);
 	void* PopBack();
 
+	void* Increment();
+	void* IncrementAt(int index);
+
 	void* First();
 	void* Next();
 	int GetCount();

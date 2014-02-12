@@ -18,8 +18,12 @@ public:
 	~JClassInfo();
 
 	JObject *CreateObject() const;
+
 	void AddProperty(JPropertyInfo *pProp);
 	JPropertyInfo* FindProperty(const char* pPropertyName);
+	const JList& GetPropertyList();
+
+	bool IsDerivedFrom(JClassInfo *pBaseClass);
 
 	static JClassInfo *FindClass(const char* pClassName);
 

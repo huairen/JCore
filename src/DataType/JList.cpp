@@ -123,7 +123,21 @@ void* JList::First()
 	return m_pWork ? m_pWork->data : 0;
 }
 
+const void* JList::First() const
+{
+	m_pWork = m_pHead;
+	return m_pWork ? m_pWork->data : 0;
+}
+
 void* JList::Next()
+{
+	if(m_pWork)
+		m_pWork = m_pWork->next;
+
+	return m_pWork ? m_pWork->data : 0;
+}
+
+const void* JList::Next() const
 {
 	if(m_pWork)
 		m_pWork = m_pWork->next;

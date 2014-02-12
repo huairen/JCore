@@ -42,6 +42,25 @@ JPropertyInfo* JClassInfo::FindProperty( const char* pPropertyName )
 	return NULL;
 }
 
+const JList& JClassInfo::GetPropertyList()
+{
+	return m_Properties;
+}
+
+bool JClassInfo::IsDerivedFrom(JClassInfo *pBaseClass)
+{
+	const JClassInfo* pClassThis = this;
+	while(pClassThis != NULL)
+	{
+		if(pClassThis == pBaseClass)
+			return true;
+
+		pClassThis = pClassThis->m_pParentClass;
+	}
+
+	return false;
+}
+
 JClassInfo * JClassInfo::FindClass( const char* pClassName )
 {
 	return (JClassInfo*)sm_pClassTable->Find(pClassName);

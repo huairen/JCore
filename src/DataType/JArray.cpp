@@ -43,6 +43,23 @@ void* JArray::PopBack()
 	return ((char*)m_pBuffer + (m_nCount * m_nTypeSize));
 }
 
+void* JArray::Increment()
+{
+	if(m_nCount >= m_nArraySize)
+		Resize(m_nCount + 1);
+
+	return ((char*)m_pBuffer + (m_nCount++ * m_nTypeSize));
+}
+
+void* JArray::IncrementAt(int index)
+{
+	if(m_nCount >= m_nArraySize)
+		Resize(m_nCount + 1);
+
+	m_nCount++;
+	return ((char*)m_pBuffer + (index * m_nTypeSize));
+}
+
 void* JArray::First()
 {
 	return 0;

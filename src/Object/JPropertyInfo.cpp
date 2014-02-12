@@ -13,14 +13,24 @@ JPropertyInfo::JPropertyInfo(JClassInfo *pClass,
 	m_pClass->AddProperty(this);
 }
 
-void JPropertyInfo::SetData( JObject* pObject, const char* pValue )
+bool JPropertyInfo::SetData( JObject* pObject, const char* pValue )
 {
 	if(m_pSetter)
+	{
 		m_pSetter->Set(pObject, pValue);
+		return true;
+	}
+
+	return false;
 }
 
-void JPropertyInfo::GetData( JObject* pObject, char* pBuffer, int nSize )
+bool JPropertyInfo::GetData( JObject* pObject, char* pBuffer, int nSize ) const
 {
 	if(m_pGetter)
+	{
 		m_pGetter->Get(pObject, pBuffer, nSize);
+		return true;
+	}
+
+	return false;
 }
