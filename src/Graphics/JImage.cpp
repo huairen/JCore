@@ -1,4 +1,5 @@
-#include "JImage.h"  
+#include "JImage.h"
+#include <windows.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +15,7 @@ JImage::JImage()
 	, m_nWidth(0)
 	, m_nHeight(0)
 	, m_FileType(UNKOWN)
-	, m_PixelFormat(NONE)
+	, m_PixelFormat(JTexture2D::NONE)
 	, m_bAlphaChannel(false)
 {
 
@@ -29,8 +30,12 @@ JImage::~JImage()
 bool JImage::LoadFromFile(const char* pFilename)
 {
 	FILE *pFile = fopen(pFilename, "rb");
+	if(pFile == NULL)
+		return false;
+
 	fseek(pFile, 0, SEEK_END);
 	int nSize = ftell(pFile);
+	fseek(pFile, 0, SEEK_SET);
 
 	uint8_t *pData = (uint8_t*)malloc(nSize);
 	fread(pData, sizeof(uint8_t), nSize, pFile);
@@ -43,7 +48,14 @@ bool JImage::LoadFromFile(const char* pFilename)
 
 bool JImage::LoadFromImageData(const uint8_t* pData, uint32_t nSize)
 {
-	m_pData = stbi_load_from_memory(pData, nSize, &m_nWidth, &m_nHeight, NULL, 4);
+	int n;
+	m_pData = stbi_load_from_memory(pData, nSize, &m_nWidth, &m_nHeight, &n, 4);
+
+	if(n == 4)
+		m_PixelFormat = JTexture2D::R8G8B8A8;
+	else if(n == 3)
+		m_PixelFormat = JTexture2D::R8G8B8;
+
 	return m_pData != NULL;
 }
 

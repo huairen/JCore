@@ -1,33 +1,17 @@
-#include "JGdiImage.h"
-#include <stdint.h>
+#include "JGDITexture2D.h"
+#include "Graphics/JImage.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	extern uint8_t *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp);
-	extern void stbi_image_free(void *retval_from_stbi_load);
-#ifdef __cplusplus
-}
-#endif
-
-JGdiImage::JGdiImage()
+JGDITexture2D::~JGDITexture2D()
 {
-
+	if(m_nName != 0)
+		::DeleteObject((HGDIOBJ)m_nName);
 }
 
-JGdiImage::~JGdiImage()
+bool JGDITexture2D::CreateFromImage(const JImage* pImg)
 {
-
-}
-
-bool JGdiImage::Load( const char* filename )
-{
-	int x,y,n;
-	uint8_t *pPixel = NULL;
-
-	pPixel = stbi_load(filename, &x, &y, &n, 4);
-	if(pPixel == NULL)
-		return false;
+	int x = pImg->GetWidth();
+	int y = pImg->GetHeight();
+	uint8_t *pPixel = pImg->GetData();
 
 	BITMAPINFO bmi;
 	::ZeroMemory(&bmi, sizeof(BITMAPINFO));
@@ -42,10 +26,8 @@ bool JGdiImage::Load( const char* filename )
 	bool bAlphaChannel = false;
 	LPBYTE pDest = NULL;
 	HBITMAP hBitmap = ::CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void**)&pDest, NULL, 0);
-	if( !hBitmap ) {
-		stbi_image_free(pPixel);
+	if( !hBitmap )
 		return false;
-	}
 
 	for( int i = 0; i < x * y; i++ ) 
 	{
@@ -73,16 +55,9 @@ bool JGdiImage::Load( const char* filename )
 		}
 	}
 
-	stbi_image_free(pPixel);
-
-	m_hBitmap = hBitmap;
+	m_nName = (uint32_t)hBitmap;
 	m_nWidth = x;
 	m_nHeight = y;
-	m_bAlphaChannel = bAlphaChannel;
+	m_Format = pImg->GetPixelFormat();
 	return true;
-}
-
-int JGdiImage::GetHandler()
-{
-	return (int)m_hBitmap;
 }

@@ -1,7 +1,8 @@
 #include "JGdiRender.h"
-#include "JGdiImage.h"
+#include "JGdiTexture2D.h"
+#include "Graphics/JImage.h"
 
-JGdiRender::JGdiRender()
+JGDIRender::JGDIRender()
 {
 	m_hWnd = NULL;
 	m_hBackDC = NULL;
@@ -10,22 +11,22 @@ JGdiRender::JGdiRender()
 	m_bBeginPaint = false;
 }
 
-void JGdiRender::SetWindowHandler( HWND hWnd )
+void JGDIRender::SetWindowHandler( HWND hWnd )
 {
 	m_hWnd = hWnd;
 }
 
-JImage * JGdiRender::CreateImage( const char* filename )
+JTexture2D * JGDIRender::CreateTexture( const char* filename )
 {
-	JGdiImage *img = new JGdiImage;
-	if(img->Load(filename))
-		return img;
+	JGDITexture2D *texture = new JGDITexture2D;
+	if(texture->CreateFromFile(filename))
+		return texture;
 
-	delete img;
+	delete texture;
 	return NULL;
 }
 
-bool JGdiRender::BeginPaint()
+bool JGDIRender::BeginPaint()
 {
 	RECT rcPaint;
 	if(!::GetUpdateRect(m_hWnd, &rcPaint, FALSE))
@@ -46,7 +47,7 @@ bool JGdiRender::BeginPaint()
 	return true;
 }
 
-bool JGdiRender::EndPaint()
+bool JGDIRender::EndPaint()
 {
 	//»æÖÆ°ëÍ¸Ã÷µ×Í¼
 /*	{
@@ -81,7 +82,7 @@ bool JGdiRender::EndPaint()
 	return true;
 }
 
-bool JGdiRender::GetUpdateRect( JRectI& rect )
+bool JGDIRender::GetUpdateRect( JRectI& rect )
 {
 	if(!m_bBeginPaint)
 		return false;
@@ -91,29 +92,29 @@ bool JGdiRender::GetUpdateRect( JRectI& rect )
 }
 
 
-void JGdiRender::DrawRect( const JRectI& rect, uint32_t color )
+void JGDIRender::DrawRect( const JRectI& rect, uint32_t color )
 {
 
 }
 
-void JGdiRender::DrawRectFill( const JRectI& rect, uint32_t color )
+void JGDIRender::DrawRectFill( const JRectI& rect, uint32_t color )
 {
 
 }
 
-void JGdiRender::DrawLine( const JPoint2I& startPt, const JPoint2I& endPt, uint32_t color )
+void JGDIRender::DrawLine( const JPoint2I& startPt, const JPoint2I& endPt, uint32_t color )
 {
 
 }
 
-void JGdiRender::DrawLine( int x1, int y1, int x2, int y2, uint32_t color )
+void JGDIRender::DrawLine( int x1, int y1, int x2, int y2, uint32_t color )
 {
 
 }
 
-void JGdiRender::DrawImage( JImage* img, const JPoint2I& pos )
+void JGDIRender::DrawImage( JTexture2D* img, const JPoint2I& pos )
 {
-	HBITMAP hBmp = (HBITMAP)img->GetHandler();
+	HBITMAP hBmp = (HBITMAP)img->GetName();
 
 	HDC hSrcDc = ::CreateCompatibleDC(NULL);
 	HBITMAP	hOldBmp = (HBITMAP)::SelectObject(hSrcDc, hBmp);
@@ -126,9 +127,9 @@ void JGdiRender::DrawImage( JImage* img, const JPoint2I& pos )
 	::DeleteObject(hSrcDc);
 }
 
-void JGdiRender::DrawImageSR( JImage* img, const JPoint2I& pos, const JRectI& srcRect )
+void JGDIRender::DrawImageSR( JTexture2D* img, const JPoint2I& pos, const JRectI& srcRect )
 {
-	HBITMAP hBmp = (HBITMAP)img->GetHandler();
+	HBITMAP hBmp = (HBITMAP)img->GetName();
 
 	HDC hSrcDc = ::CreateCompatibleDC(NULL);
 	HBITMAP	hOldBmp = (HBITMAP)::SelectObject(hSrcDc, hBmp);
@@ -141,9 +142,9 @@ void JGdiRender::DrawImageSR( JImage* img, const JPoint2I& pos, const JRectI& sr
 	::DeleteObject(hSrcDc);
 }
 
-void JGdiRender::DrawImageStretch( JImage* img, const JRectI& destRect )
+void JGDIRender::DrawImageStretch( JTexture2D* img, const JRectI& destRect )
 {
-	HBITMAP hBmp = (HBITMAP)img->GetHandler();
+	HBITMAP hBmp = (HBITMAP)img->GetName();
 
 	HDC hSrcDc = ::CreateCompatibleDC(NULL);
 	HBITMAP	hOldBmp = (HBITMAP)::SelectObject(hSrcDc, hBmp);
@@ -156,14 +157,14 @@ void JGdiRender::DrawImageStretch( JImage* img, const JRectI& destRect )
 	::DeleteObject(hSrcDc);
 }
 
-void JGdiRender::DrawImageStretchSR( JImage* img, const JRectI& destRect, const JRectI& srcRect )
+void JGDIRender::DrawImageStretchSR( JTexture2D* texture, const JRectI& destRect, const JRectI& srcRect )
 {
-	HBITMAP hBmp = (HBITMAP)img->GetHandler();
+	HBITMAP hBmp = (HBITMAP)texture->GetName();
 
 	HDC hSrcDc = ::CreateCompatibleDC(NULL);
 	HBITMAP	hOldBmp = (HBITMAP)::SelectObject(hSrcDc, hBmp);
 
-	if(img->HasAlphaChannel())
+	if(texture->HasAlphaChannel())
 	{
 		BLENDFUNCTION bf = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 		::AlphaBlend(m_hBackDC, destRect.position.x - m_rcUpdateRect.position.x,

@@ -1,12 +1,6 @@
 #include "JObject.h"
 #include "JGlobalDefine.h"
 
-void RefCounter::DecRef()
-{
-	if ( --m_nCount == 0 )
-		delete this;
-}
-
 JClassInfo JObject::ms_classInfo("JObject",NULL,NULL);
 JClassInfo *JObject::GetClassInfo() const
 { return &JObject::ms_classInfo; }
@@ -85,4 +79,9 @@ JObject* JObject::Clone()
 	}
 
 	return NULL;
+}
+
+void JObject::AddComponent(JObject* pObj)
+{
+	m_Components.PushBack(pObj);
 }

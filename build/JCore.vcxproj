@@ -13,12 +13,15 @@
   <ItemGroup>
     <ClCompile Include="..\src\DataType\JHashTable.cpp" />
     <ClCompile Include="..\src\DataType\JList.cpp" />
+    <ClCompile Include="..\src\Graphics\Drawable\JBitmapDrawable.cpp" />
+    <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp" />
+    <ClCompile Include="..\src\Graphics\JTexture2D.cpp" />
     <ClCompile Include="..\src\object\JObject.cpp" />
     <ClCompile Include="..\src\object\JClassInfo.cpp" />
     <ClCompile Include="..\src\object\JPropertyInfo.cpp" />
     <ClCompile Include="..\src\object\JTypeInfo.cpp" />
-    <ClCompile Include="..\src\graphics\gdi\JGdiImage.cpp" />
-    <ClCompile Include="..\src\graphics\gdi\JGdiRender.cpp" />
+    <ClCompile Include="..\src\graphics\GDI\JGDITexture2D.cpp" />
+    <ClCompile Include="..\src\graphics\GDI\JGDIRender.cpp" />
     <ClCompile Include="..\src\graphics\JImage.cpp" />
     <ClCompile Include="..\src\graphics\lookup3.c" />
     <ClCompile Include="..\src\graphics\stb_image.c" />
@@ -28,13 +31,16 @@
     <ClInclude Include="..\src\DataType\JArray.h" />
     <ClInclude Include="..\src\DataType\JHashTable.h" />
     <ClInclude Include="..\src\DataType\JList.h" />
+    <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h" />
+    <ClInclude Include="..\src\Graphics\Drawable\JDrawable.h" />
+    <ClInclude Include="..\src\Graphics\JTexture2D.h" />
     <ClInclude Include="..\src\JGlobalDefine.h" />
     <ClInclude Include="..\src\object\JObject.h" />
     <ClInclude Include="..\src\object\JClassInfo.h" />
     <ClInclude Include="..\src\object\JPropertyInfo.h" />
     <ClInclude Include="..\src\object\JTypeInfo.h" />
-    <ClInclude Include="..\src\graphics\gdi\JGdiImage.h" />
-    <ClInclude Include="..\src\graphics\gdi\JGdiRender.h" />
+    <ClInclude Include="..\src\graphics\GDI\JGDITexture2D.h" />
+    <ClInclude Include="..\src\graphics\GDI\JGDIRender.h" />
     <ClInclude Include="..\src\graphics\JImage.h" />
     <ClInclude Include="..\src\graphics\JRender.h" />
     <ClInclude Include="..\src\math\JMath.h" />
@@ -76,6 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

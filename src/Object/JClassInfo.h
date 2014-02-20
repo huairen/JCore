@@ -69,6 +69,7 @@ JObject *JCreateDynamicObject(const char* name);
 	JObject* name::CreateObject()									\
 		{ return new name; }
 
+#ifdef STATIC_LIB
 #define JFORCE_LINK_OBJ(name)										\
 	int ForceLink##name();											\
 	const int ForceLinkVar##name = ForceLink##name();
@@ -76,4 +77,9 @@ JObject *JCreateDynamicObject(const char* name);
 #define JIMPLEMENT_FORCE_LINK_OBJ(name)								\
 	int ForceLink##name()											\
 		{ return 0; }
+#else
+#define JFORCE_LINK_OBJ(name)
+#define JIMPLEMENT_FORCE_LINK_OBJ(name)
+#endif
+
 #endif

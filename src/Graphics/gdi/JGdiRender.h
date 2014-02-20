@@ -2,18 +2,18 @@
 #define JGDIRENDER_H_
 
 #include <windows.h>
-#include "../JRender.h"
+#include "Graphics/JRender.h"
 
 #pragma comment(lib,"msimg32.lib")
 
-class JGdiRender : public JRender
+class JGDIRender : public JRender
 {
 public:
-	JGdiRender();
+	JGDIRender();
 
 	void SetWindowHandler(HWND hWnd);
 
-	virtual JImage *CreateImage(const char* filename);
+	virtual JTexture2D *CreateTexture(const char* filename);
 
 	virtual bool BeginPaint();
 	virtual bool EndPaint();
@@ -25,10 +25,10 @@ public:
 	virtual void DrawLine(const JPoint2I& startPt, const JPoint2I& endPt, uint32_t color);
 	virtual void DrawLine(int x1, int y1, int x2, int y2, uint32_t color);
 
-	virtual void DrawImage(JImage* img, const JPoint2I& pos);
-	virtual void DrawImageSR(JImage* img, const JPoint2I& pos, const JRectI& srcRect);
-	virtual void DrawImageStretch(JImage* img, const JRectI& destRect);
-	virtual void DrawImageStretchSR(JImage* img, const JRectI& destRect, const JRectI& srcRect);
+	virtual void DrawImage(JTexture2D* img, const JPoint2I& pos);
+	virtual void DrawImageSR(JTexture2D* img, const JPoint2I& pos, const JRectI& srcRect);
+	virtual void DrawImageStretch(JTexture2D* img, const JRectI& destRect);
+	virtual void DrawImageStretchSR(JTexture2D* img, const JRectI& destRect, const JRectI& srcRect);
 
 private:
 	HWND m_hWnd;

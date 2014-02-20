@@ -2,6 +2,7 @@
 #define JIMAGE_H_
 
 #include "JGlobalDefine.h"
+#include "JTexture2D.h"
 
 class JImage
 {
@@ -15,30 +16,18 @@ public:
 		GIF,
 	};
 
-	enum PixelFormat
-	{
-		NONE,
-
-		A8,
-		L8,
-
-		R8G8B8,
-		R8G8B8A8,
-	};
-
 public:
 	JImage();
 	virtual ~JImage();
 
-	virtual bool Load(const char* filename) = 0;
-	virtual int GetHandler() = 0;
-
 	bool LoadFromFile(const char* pFilename);
 	bool LoadFromImageData(const uint8_t* pData, uint32_t nSize);
 
-	inline int GetWidth() { return m_nWidth; }
-	inline int GetHeight() { return m_nHeight; }
-	inline bool HasAlphaChannel() { return m_bAlphaChannel; }
+	inline uint8_t* GetData() const { return m_pData; }
+	inline uint32_t GetDataLen() const { return m_nDataSize; }
+	inline int GetWidth() const { return m_nWidth; }
+	inline int GetHeight() const { return m_nHeight; }
+	inline JTexture2D::PixelFormat GetPixelFormat() const { return m_PixelFormat; }
 
 private:
 	FileFormat DetectFormat(const uint8_t* pData, uint32_t nSize);
@@ -53,7 +42,7 @@ protected:
 	int m_nHeight;
 
 	FileFormat m_FileType;
-	PixelFormat m_PixelFormat;
+	JTexture2D::PixelFormat m_PixelFormat;
 
 	bool m_bAlphaChannel;
 	std::string m_FilePath;

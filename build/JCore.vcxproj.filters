@@ -7,7 +7,7 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{f57ca1d7-f24b-4d93-b548-829e5fa6259d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\gdi">
+    <Filter Include="Graphics\GDI">
       <UniqueIdentifier>{5831a131-6ecc-4b1c-96a8-876aa16edf16}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
@@ -18,6 +18,9 @@
     </Filter>
     <Filter Include="DataType">
       <UniqueIdentifier>{c84a19fe-880d-4405-a07a-a2392da4ffd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Drawable">
+      <UniqueIdentifier>{c70530ce-7029-439d-81c1-8978e5c91c33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,11 +36,8 @@
     <ClCompile Include="..\src\resource\JResourceManager.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\graphics\gdi\JGdiImage.cpp">
-      <Filter>Graphics\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\graphics\gdi\JGdiRender.cpp">
-      <Filter>Graphics\gdi</Filter>
+    <ClCompile Include="..\src\graphics\GDI\JGDIRender.cpp">
+      <Filter>Graphics\GDI</Filter>
     </ClCompile>
     <ClCompile Include="..\src\object\JObject.cpp">
       <Filter>Object</Filter>
@@ -56,6 +56,18 @@
     </ClCompile>
     <ClCompile Include="..\src\DataType\JList.cpp">
       <Filter>DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\JTexture2D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\GDI\JGDITexture2D.cpp">
+      <Filter>Graphics\GDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\Drawable\JBitmapDrawable.cpp">
+      <Filter>Graphics\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp">
+      <Filter>Graphics\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +89,8 @@
     <ClInclude Include="..\src\resource\JResourceManager.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\graphics\gdi\JGdiImage.h">
-      <Filter>Graphics\gdi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\graphics\gdi\JGdiRender.h">
-      <Filter>Graphics\gdi</Filter>
+    <ClInclude Include="..\src\graphics\GDI\JGDIRender.h">
+      <Filter>Graphics\GDI</Filter>
     </ClInclude>
     <ClInclude Include="..\src\object\JObject.h">
       <Filter>Object</Filter>
@@ -104,6 +113,18 @@
     </ClInclude>
     <ClInclude Include="..\src\DataType\JList.h">
       <Filter>DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\JTexture2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\GDI\JGDITexture2D.h">
+      <Filter>Graphics\GDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\Drawable\JDrawable.h">
+      <Filter>Graphics\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h">
+      <Filter>Graphics\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
