@@ -11,7 +11,11 @@ public:
 	JBitmapDrawable();
 	virtual ~JBitmapDrawable();
 
-	virtual void Draw();
+	bool Load(const char* filename);
+
+	virtual uint32_t GetWidth();
+	virtual uint32_t GetHeight();
+	virtual void Draw(const JRectI& rcOrigin, const JRectI& rcPaint);
 
 protected:
 	JTexture2D* m_pBitmap;

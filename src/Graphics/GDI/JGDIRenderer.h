@@ -2,18 +2,19 @@
 #define JGDIRENDER_H_
 
 #include <windows.h>
-#include "Graphics/JRender.h"
+#include "Graphics/JRenderer.h"
 
 #pragma comment(lib,"msimg32.lib")
 
-class JGDIRender : public JRender
+class JGDIRenderer : public JRenderer
 {
 public:
-	JGDIRender();
+	JGDIRenderer();
 
 	void SetWindowHandler(HWND hWnd);
 
 	virtual JTexture2D *CreateTexture(const char* filename);
+	virtual JTexture2D *CreateTexture(const JImage* image);
 
 	virtual bool BeginPaint();
 	virtual bool EndPaint();

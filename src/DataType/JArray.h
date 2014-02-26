@@ -10,18 +10,21 @@ public:
 	JArray();
 	~JArray();
 
-	void Insert(int index, T *obj);
+	void Insert(int index, const T& obj);
 	void Remove(int index);
 
-	void PushBack(T *obj);
-	T* PopBack();
+	void PushBack(const T& obj);
+	T &PopBack();
 
-	T* Increment();
-	T* IncrementAt(int index);
+	void Increment();
+	void IncrementAt(int index);
 
-	T* At(int index);
-	inline int GetCount()
-	{ return m_nCount; }
+	T &First();
+	T &Last();
+	T &At(int index);
+
+	inline int GetCount() { return m_nCount; }
+	inline bool IsEmpty() { return m_nCount==0; }
 
 protected:
 	bool Resize(int nSize);
@@ -47,12 +50,12 @@ JArray<T>::~JArray()
 }
 
 template<typename T>
-void JArray<T>::Insert( int index, T *obj )
+void JArray<T>::Insert( int index, const T &obj )
 {
 	if(m_nCount >= m_nArraySize)
 		Resize(m_nCount + 1);
 
-	memcpy(m_pBuffer + index, obj, sizeof(T));
+	m_pBuffer[index] = obj;
 	m_nCount++;
 }
 
@@ -69,44 +72,52 @@ void JArray<T>::Remove( int index )
 }
 
 template<typename T>
-void JArray<T>::PushBack( T* obj )
+void JArray<T>::PushBack( const T &obj )
 {
 	Insert(m_nCount, obj);
 }
 
 template<typename T>
-T* JArray<T>::PopBack()
+T & JArray<T>::PopBack()
 {
 	m_nCount--;
-	return m_pBuffer + m_nCount;
+	return m_pBuffer[m_nCount];
 }
 
 template<typename T>
-T* JArray<T>::Increment()
-{
-	if(m_nCount >= m_nArraySize)
-		Resize(m_nCount + 1);
-
-	return m_pBuffer + m_nCount++;
-}
-
-template<typename T>
-T* JArray<T>::IncrementAt(int index)
+void JArray<T>::Increment()
 {
 	if(m_nCount >= m_nArraySize)
 		Resize(m_nCount + 1);
 
 	m_nCount++;
-	return m_pBuffer + index;
 }
 
 template<typename T>
-T* JArray<T>::At(int index)
+void JArray<T>::IncrementAt(int index)
 {
-	if(index >= m_nCount)
-		return NULL;
+	if(m_nCount >= m_nArraySize)
+		Resize(m_nCount + 1);
 
-	return m_pBuffer + index;
+	m_nCount++;
+}
+
+template<typename T>
+inline T & JArray<T>::First()
+{
+	return m_pBuffer[0];
+}
+
+template<typename T>
+inline T & JArray<T>::Last()
+{
+	return m_pBuffer[m_nCount-1];
+}
+
+template<typename T>
+T & JArray<T>::At(int index)
+{
+	return m_pBuffer[index];
 }
 
 template<typename T>

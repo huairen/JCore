@@ -23,10 +23,12 @@ public:
 	bool LoadFromFile(const char* pFilename);
 	bool LoadFromImageData(const uint8_t* pData, uint32_t nSize);
 
+	uint32_t GetPixel(int x, int y) const;
+
 	inline uint8_t* GetData() const { return m_pData; }
 	inline uint32_t GetDataLen() const { return m_nDataSize; }
-	inline int GetWidth() const { return m_nWidth; }
-	inline int GetHeight() const { return m_nHeight; }
+	inline uint32_t GetWidth() const { return m_nWidth; }
+	inline uint32_t GetHeight() const { return m_nHeight; }
 	inline JTexture2D::PixelFormat GetPixelFormat() const { return m_PixelFormat; }
 
 private:
@@ -38,8 +40,9 @@ protected:
 	uint8_t *m_pData;
 	uint32_t m_nDataSize;
 
-	int m_nWidth;
-	int m_nHeight;
+	uint32_t m_nWidth;
+	uint32_t m_nHeight;
+	uint32_t m_nPixelByte;
 
 	FileFormat m_FileType;
 	JTexture2D::PixelFormat m_PixelFormat;

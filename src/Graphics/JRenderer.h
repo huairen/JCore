@@ -1,13 +1,15 @@
-#ifndef JRENDER_H_
-#define JRENDER_H_
-#include <stdint.h>
+#ifndef JRENDERER_H_
+#define JRENDERER_H_
+
+#include "JGlobalDefine.h"
 #include "JTexture2D.h"
 #include "math/JRect.h"
 
-class JRender
+class JRenderer
 {
 public:
 	virtual JTexture2D *CreateTexture(const char* filename) = 0;
+	virtual JTexture2D *CreateTexture(const JImage* image) = 0;
 
 	virtual bool BeginPaint() = 0;
 	virtual bool EndPaint() = 0;

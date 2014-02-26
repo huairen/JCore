@@ -22,6 +22,12 @@
     <Filter Include="Graphics\Drawable">
       <UniqueIdentifier>{c70530ce-7029-439d-81c1-8978e5c91c33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{e0c7e63c-98c0-4463-8d75-602761cfebf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{779e9510-61ed-407a-b86e-2c5c705c3387}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\graphics\JImage.cpp">
@@ -35,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="..\src\resource\JResourceManager.cpp">
       <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\graphics\GDI\JGDIRender.cpp">
-      <Filter>Graphics\GDI</Filter>
     </ClCompile>
     <ClCompile Include="..\src\object\JObject.cpp">
       <Filter>Object</Filter>
@@ -69,6 +72,24 @@
     <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp">
       <Filter>Graphics\Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\String\JStringFunction.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\JRenderSystem.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\graphics\GDI\JGDIRenderer.cpp">
+      <Filter>Graphics\GDI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FileSystem\JFileSystem.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\Drawable\JNinePatchDrawable.cpp">
+      <Filter>Graphics\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics\Drawable\JStateListDrawable.cpp">
+      <Filter>Graphics\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\math\JPoint.h">
@@ -83,14 +104,8 @@
     <ClInclude Include="..\src\graphics\JImage.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\graphics\JRender.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\resource\JResourceManager.h">
       <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\graphics\GDI\JGDIRender.h">
-      <Filter>Graphics\GDI</Filter>
     </ClInclude>
     <ClInclude Include="..\src\object\JObject.h">
       <Filter>Object</Filter>
@@ -124,6 +139,27 @@
       <Filter>Graphics\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h">
+      <Filter>Graphics\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\String\JStringFunction.h">
+      <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\JRenderSystem.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\JRenderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\graphics\GDI\JGDIRenderer.h">
+      <Filter>Graphics\GDI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FileSystem\JFileSystem.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\Drawable\JNinePatchDrawable.h">
+      <Filter>Graphics\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphics\Drawable\JStateListDrawable.h">
       <Filter>Graphics\Drawable</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,39 +1,19 @@
-#include "JBitmapDrawable.h"
+#include "JStateListDrawable.h"
 #include "Graphics/JRenderSystem.h"
 
-JBitmapDrawable::JBitmapDrawable()
+JStateListDrawable::JStateListDrawable()
 	: m_pBitmap(0)
 {
 
 }
 
-JBitmapDrawable::~JBitmapDrawable()
+JStateListDrawable::~JStateListDrawable()
 {
 	if(m_pBitmap != 0)
 		delete m_pBitmap;
 }
 
-bool JBitmapDrawable::Load(const char* filename)
-{
-	m_pBitmap = JRenderSystem::GetInstance().CreateTexture(filename);
-	return (m_pBitmap != NULL);
-}
-
-uint32_t JBitmapDrawable::GetWidth()
-{
-	if(m_pBitmap != 0)
-		return m_pBitmap->GetWidth();
-	return 0;
-}
-
-uint32_t JBitmapDrawable::GetHeight()
-{
-	if(m_pBitmap != 0)
-		return m_pBitmap->GetHeight();
-	return 0;
-}
-
-void JBitmapDrawable::Draw(const JRectI& rcOrigin, const JRectI& rcPaint)
+void JStateListDrawable::Draw(const JRectI& rcOrigin, const JRectI& rcPaint)
 {
 	JRenderer* pRenderer = JRenderSystem::GetInstance().GetRenderer();
 	if(pRenderer == NULL)
@@ -50,3 +30,10 @@ void JBitmapDrawable::Draw(const JRectI& rcOrigin, const JRectI& rcPaint)
 
 	pRenderer->DrawImageStretchSR(m_pBitmap, rcPaint, imgRect);
 }
+
+bool JStateListDrawable::Load(const char* filename)
+{
+	m_pBitmap = JRenderSystem::GetInstance().CreateTexture(filename);
+	return (m_pBitmap != NULL);
+}
+

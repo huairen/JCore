@@ -14,6 +14,7 @@ JImage::JImage()
 	, m_nDataSize(0)
 	, m_nWidth(0)
 	, m_nHeight(0)
+	, m_nPixelByte(0)
 	, m_FileType(UNKOWN)
 	, m_PixelFormat(JTexture2D::NONE)
 	, m_bAlphaChannel(false)
@@ -48,15 +49,26 @@ bool JImage::LoadFromFile(const char* pFilename)
 
 bool JImage::LoadFromImageData(const uint8_t* pData, uint32_t nSize)
 {
-	int n;
-	m_pData = stbi_load_from_memory(pData, nSize, &m_nWidth, &m_nHeight, &n, 4);
+	int x,y,n;
+	m_pData = stbi_load_from_memory(pData, nSize, &x, &y, &n, 4);
 
-	if(n == 4)
+	m_nWidth = x;
+	m_nHeight = y;
+	m_nPixelByte = n;
+
+	if(m_nPixelByte == 4)
 		m_PixelFormat = JTexture2D::R8G8B8A8;
-	else if(n == 3)
+	else if(m_nPixelByte == 3)
 		m_PixelFormat = JTexture2D::R8G8B8;
 
 	return m_pData != NULL;
+}
+
+uint32_t JImage::GetPixel(int x, int y) const
+{
+	if(x >= m_nWidth || y >= m_nHeight)
+		return 0;
+	return *(int*)(m_pData + (m_nWidth * y * m_nPixelByte) + (x * m_nPixelByte));
 }
 
 JImage::FileFormat JImage::DetectFormat(const uint8_t* pData, uint32_t nSize)
