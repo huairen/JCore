@@ -39,3 +39,13 @@ char* JStringFunction::TrimRight(char* src)
 	return src;
 }
 
+void JStringFunction::ForwardSlash(char* path)
+{
+	while(*path)
+	{
+		if(*path == '\\')
+			*path = '/';
+		path++;
+	}
+}
+

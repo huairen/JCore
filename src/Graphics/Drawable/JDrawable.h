@@ -14,8 +14,11 @@ public:
 	virtual uint32_t GetHeight() { return 0; }
 	virtual void Draw(const JRectI& rcOrigin, const JRectI& rcPaint) = 0;
 
+	virtual void SetState(int nState) {}
+
 
 	static JDrawable* Create(const char* pString);
+
 };
 
 #endif // !JDRAWABLE_H_

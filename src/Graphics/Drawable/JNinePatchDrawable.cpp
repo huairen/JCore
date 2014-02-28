@@ -169,10 +169,6 @@ void JNinePatchDrawable::FindArea(const JImage *img)
 
 JPoint2I JNinePatchDrawable::DrawFixedPatch( const JRectI &rcPatch, const JRectI &rcOrigin, const JRectI &rcPaint )
 {
-	JRenderer* pRenderer = JRenderSystem::GetInstance().GetRenderer();
-	if(pRenderer == NULL)
-		return JPoint2I(0,0);
-
 	JPoint2I pos;
 
 	if(rcPatch.position.x <= 1)
@@ -200,8 +196,9 @@ JPoint2I JNinePatchDrawable::DrawFixedPatch( const JRectI &rcPatch, const JRectI
 	JRectI imgRect(pos, rcPatch.extent);
 	if(imgRect.Intersect(rcPaint))
 	{
-		imgRect.position = imgRect.position - pos + rcPatch.position;
-		pRenderer->DrawImageSR(m_pBitmap, pos, imgRect);
+		JPoint2I clipPos = imgRect.position;
+		imgRect.position = clipPos - pos + rcPatch.position;
+		JRenderSystem::GetInstance().DrawImageSR(m_pBitmap, clipPos, imgRect);
 	}
 
 	return pos;

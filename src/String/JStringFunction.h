@@ -8,6 +8,7 @@ public:
 	static char* Trim(char* src);
 	static char* TrimLeft(char* src);
 	static char* TrimRight(char* src);
+	static void ForwardSlash(char* path);
 };
 
 #endif

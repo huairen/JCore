@@ -2,6 +2,7 @@
 #define JSTATELIST_DRAWABLE_H_
 
 #include "JDrawable.h"
+#include "DataType/JArray.h"
 
 class JTexture2D;
 
@@ -12,10 +13,12 @@ public:
 	virtual ~JStateListDrawable();
 
 	virtual void Draw(const JRectI& rcOrigin, const JRectI& rcPaint);
+	virtual void SetState(int nState);
 
-	bool Load(const char* filename);
+	void Add(JDrawable* pDrawable, int nState);
 
 protected:
-	JTexture2D* m_pBitmap;
+	JArray<JDrawable*> m_DrawableList;
+	JDrawable* m_pCurrDrawable;
 };
 #endif //JBITMAP_DRAWABLE_H_

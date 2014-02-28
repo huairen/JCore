@@ -14,6 +14,7 @@
     <ClCompile Include="..\src\DataType\JHashTable.cpp" />
     <ClCompile Include="..\src\DataType\JList.cpp" />
     <ClCompile Include="..\src\FileSystem\JFileSystem.cpp" />
+    <ClCompile Include="..\src\FileSystem\JStream.cpp" />
     <ClCompile Include="..\src\Graphics\Drawable\JBitmapDrawable.cpp" />
     <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp" />
     <ClCompile Include="..\src\Graphics\Drawable\JNinePatchDrawable.cpp" />
@@ -31,12 +32,15 @@
     <ClCompile Include="..\src\graphics\stb_image.c" />
     <ClCompile Include="..\src\resource\JResourceManager.cpp" />
     <ClCompile Include="..\src\String\JStringFunction.cpp" />
+    <ClCompile Include="..\src\Thread\JTask.cpp" />
+    <ClCompile Include="..\src\Thread\JThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\DataType\JArray.h" />
     <ClInclude Include="..\src\DataType\JHashTable.h" />
     <ClInclude Include="..\src\DataType\JList.h" />
     <ClInclude Include="..\src\FileSystem\JFileSystem.h" />
+    <ClInclude Include="..\src\FileSystem\JStream.h" />
     <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h" />
     <ClInclude Include="..\src\Graphics\Drawable\JDrawable.h" />
     <ClInclude Include="..\src\Graphics\Drawable\JNinePatchDrawable.h" />
@@ -57,6 +61,8 @@
     <ClInclude Include="..\src\math\JRect.h" />
     <ClInclude Include="..\src\resource\JResourceManager.h" />
     <ClInclude Include="..\src\String\JStringFunction.h" />
+    <ClInclude Include="..\src\Thread\JTask.h" />
+    <ClInclude Include="..\src\Thread\JThread.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F8B57C55-65C9-4215-8296-09EFEB83EA9E}</ProjectGuid>

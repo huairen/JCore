@@ -7,21 +7,28 @@ template<typename T>
 class JArray
 {
 public:
-	JArray();
-	~JArray();
+	// type definitions
+	typedef T              value_type;
+	typedef T*             iterator;
+	typedef const T*       const_iterator;
+	typedef T&             reference;
+	typedef const T&       const_reference;
 
-	void Insert(int index, const T& obj);
+public:
+	JArray(): m_nArraySize(0), m_nCount(0), m_pBuffer(0) {}
+	~JArray() { delete[] m_pBuffer; }
+
+	void Insert(int index, const_reference obj);
 	void Remove(int index);
-
-	void PushBack(const T& obj);
-	T &PopBack();
-
 	void Increment();
-	void IncrementAt(int index);
 
-	T &First();
-	T &Last();
-	T &At(int index);
+	inline void PushBack(const_reference obj) { Insert(m_nCount, obj); }
+	inline reference PopBack() { return m_pBuffer[--m_nCount]; }
+
+
+	inline reference First() { return m_pBuffer[0]; }
+	inline reference Last() { return m_pBuffer[m_nCount-1]; }
+	inline reference At(int index) { return m_pBuffer[index]; }
 
 	inline int GetCount() { return m_nCount; }
 	inline bool IsEmpty() { return m_nCount==0; }
@@ -35,22 +42,9 @@ private:
 	T* m_pBuffer;
 };
 
-template<typename T>
-JArray<T>::JArray()
-	: m_nArraySize(0)
-	, m_nCount(0)
-	, m_pBuffer(0)
-{
-}
 
 template<typename T>
-JArray<T>::~JArray()
-{
-	delete[] m_pBuffer;
-}
-
-template<typename T>
-void JArray<T>::Insert( int index, const T &obj )
+void JArray<T>::Insert(int index, const_reference obj)
 {
 	if(m_nCount >= m_nArraySize)
 		Resize(m_nCount + 1);
@@ -60,7 +54,7 @@ void JArray<T>::Insert( int index, const T &obj )
 }
 
 template<typename T>
-void JArray<T>::Remove( int index )
+void JArray<T>::Remove(int index)
 {
 	if (index < (m_nCount - 1))
 	{
@@ -72,52 +66,11 @@ void JArray<T>::Remove( int index )
 }
 
 template<typename T>
-void JArray<T>::PushBack( const T &obj )
-{
-	Insert(m_nCount, obj);
-}
-
-template<typename T>
-T & JArray<T>::PopBack()
-{
-	m_nCount--;
-	return m_pBuffer[m_nCount];
-}
-
-template<typename T>
 void JArray<T>::Increment()
 {
 	if(m_nCount >= m_nArraySize)
 		Resize(m_nCount + 1);
-
 	m_nCount++;
-}
-
-template<typename T>
-void JArray<T>::IncrementAt(int index)
-{
-	if(m_nCount >= m_nArraySize)
-		Resize(m_nCount + 1);
-
-	m_nCount++;
-}
-
-template<typename T>
-inline T & JArray<T>::First()
-{
-	return m_pBuffer[0];
-}
-
-template<typename T>
-inline T & JArray<T>::Last()
-{
-	return m_pBuffer[m_nCount-1];
-}
-
-template<typename T>
-T & JArray<T>::At(int index)
-{
-	return m_pBuffer[index];
 }
 
 template<typename T>

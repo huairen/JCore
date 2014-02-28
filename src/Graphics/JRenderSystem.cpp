@@ -9,7 +9,8 @@ JRenderSystem::JRenderSystem()
 
 JRenderSystem::~JRenderSystem()
 {
-
+	if(m_pRenderer != NULL)
+		delete m_pRenderer;
 }
 
 bool JRenderSystem::CreateRenderer(const char* pName, uint32_t nHandler)
@@ -25,18 +26,4 @@ bool JRenderSystem::CreateRenderer(const char* pName, uint32_t nHandler)
 	}
 
 	return true;
-}
-
-JTexture2D* JRenderSystem::CreateTexture(const char* pFileName)
-{
-	if(m_pRenderer != NULL)
-		return m_pRenderer->CreateTexture(pFileName);
-	return NULL;
-}
-
-JTexture2D* JRenderSystem::CreateTexture(const JImage* pImage)
-{
-	if(m_pRenderer != NULL)
-		return m_pRenderer->CreateTexture(pImage);
-	return NULL;
 }

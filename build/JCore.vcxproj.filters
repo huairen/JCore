@@ -28,6 +28,9 @@
     <Filter Include="FileSystem">
       <UniqueIdentifier>{779e9510-61ed-407a-b86e-2c5c705c3387}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{70fdce52-9fef-4996-b774-66359068aa4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\graphics\JImage.cpp">
@@ -89,6 +92,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Graphics\Drawable\JStateListDrawable.cpp">
       <Filter>Graphics\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FileSystem\JStream.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Thread\JTask.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Thread\JThread.cpp">
+      <Filter>Thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +173,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Graphics\Drawable\JStateListDrawable.h">
       <Filter>Graphics\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FileSystem\JStream.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Thread\JTask.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Thread\JThread.h">
+      <Filter>Thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
