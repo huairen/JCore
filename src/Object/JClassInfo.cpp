@@ -13,7 +13,11 @@ JClassInfo::JClassInfo( const char *pName, JClassInfo *pParent, JObjectConstruct
 
 JClassInfo::~JClassInfo()
 {
-
+	if(sm_pClassTable != NULL)
+	{
+		delete sm_pClassTable;
+		sm_pClassTable = NULL;
+	}
 }
 
 JObject * JClassInfo::CreateObject() const

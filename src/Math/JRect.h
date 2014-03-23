@@ -15,6 +15,9 @@ public:
 	JRectI(const JPoint2I& _point, const JPoint2I& _size);
 	JRectI(int _x, int _y, int _wigth, int _height);
 
+	inline int GetRight() const { return position.x + extent.x; }
+	inline int GetBottom() const { return position.y + extent.y; }
+
 	bool isValidRect() const;
 	bool Intersect(const JRectI& clipRect);
 	bool IsPointIn(const JPoint2I& pt);
@@ -44,8 +47,8 @@ inline bool JRectI::isValidRect() const
 inline bool JRectI::Intersect(const JRectI& clipRect)
 {
 	JPoint2I bottomL;
-	bottomL.x = GetMin(position.x + extent.x, clipRect.position.x + clipRect.extent.x);
-	bottomL.y = GetMin(position.y + extent.y, clipRect.position.y + clipRect.extent.y);
+	bottomL.x = GetMin(GetRight(), clipRect.GetRight());
+	bottomL.y = GetMin(GetBottom(), clipRect.GetBottom());
 	
 	position.x = GetMax(position.x, clipRect.position.x);
 	position.y = GetMax(position.y, clipRect.position.y);
@@ -58,7 +61,7 @@ inline bool JRectI::Intersect(const JRectI& clipRect)
 
 inline bool JRectI::IsPointIn(const JPoint2I& pt)
 {
-	return (pt.x >= position.x && pt.x < position.x + extent.x && pt.y >= position.y && pt.y < position.y + extent.y);
+	return (pt.x >= position.x && pt.x < GetRight() && pt.y >= position.y && pt.y < GetBottom());
 }
 
 inline bool JRectI::Overlaps( JRectI R ) const
@@ -69,8 +72,8 @@ inline bool JRectI::Overlaps( JRectI R ) const
 inline bool JRectI::Contains( const JRectI& R ) const
 {
 	if (position.x <= R.position.x && position.y <= R.position.y)
-		if (R.position.x + R.extent.x <= position.x + extent.x)
-			if (R.position.y + R.extent.y <= position.y + extent.y)
+		if (R.GetRight() <= GetRight())
+			if (R.GetBottom() <= GetBottom())
 				return true;
 	return false;
 }

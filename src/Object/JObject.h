@@ -2,7 +2,7 @@
 #define JOBJECT_H_
 
 #include "JClassInfo.h"
-#include "DataType/JList.h"
+#include "DataType/JHashTable.h"
 
 class JObject
 {
@@ -20,10 +20,12 @@ public:
 
 	JObject* Clone();
 
-	void AddComponent(JObject* pObj);
+	void AddComponent(const char *name, JObject* pObj);
+	void RemoveComponent(const char *name);
+	JObject* GetComponent(const char *name);
 
-private:
-	JList m_Components;
+protected:
+	JHashTable m_Components;
 };
 
 #endif

@@ -12,12 +12,31 @@ class JHashTable
 	};
 
 public:
+	class Iterator
+	{
+	public:
+		Iterator(Node** pTable, int );
+		JHashTable::Iterator& operator ++();
+		JHashTable::Iterator operator ++(int);
+
+		bool IsEnd() const;
+		void *GetVaule() const;
+
+	private:
+		Node* pPointer;
+		Node** pCurr;
+		Node** pEnd;
+	};
+
+public:
 	JHashTable();
 	~JHashTable();
 
 	void Insert(const char* pKey, void* pValue);
-
+	void* Remove(const char* pKey);
 	void* Find(const char* pKey);
+
+	Iterator Begin();
 
 protected:
 	int MakeKey(const char* pStr);

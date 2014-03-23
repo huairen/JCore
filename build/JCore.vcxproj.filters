@@ -19,9 +19,6 @@
     <Filter Include="DataType">
       <UniqueIdentifier>{c84a19fe-880d-4405-a07a-a2392da4ffd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Drawable">
-      <UniqueIdentifier>{c70530ce-7029-439d-81c1-8978e5c91c33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="String">
       <UniqueIdentifier>{e0c7e63c-98c0-4463-8d75-602761cfebf7}</UniqueIdentifier>
     </Filter>
@@ -69,12 +66,6 @@
     <ClCompile Include="..\src\graphics\GDI\JGDITexture2D.cpp">
       <Filter>Graphics\GDI</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Graphics\Drawable\JBitmapDrawable.cpp">
-      <Filter>Graphics\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp">
-      <Filter>Graphics\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\String\JStringFunction.cpp">
       <Filter>String</Filter>
     </ClCompile>
@@ -86,12 +77,6 @@
     </ClCompile>
     <ClCompile Include="..\src\FileSystem\JFileSystem.cpp">
       <Filter>FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Graphics\Drawable\JNinePatchDrawable.cpp">
-      <Filter>Graphics\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Graphics\Drawable\JStateListDrawable.cpp">
-      <Filter>Graphics\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="..\src\FileSystem\JStream.cpp">
       <Filter>FileSystem</Filter>
@@ -147,12 +132,6 @@
     <ClInclude Include="..\src\graphics\GDI\JGDITexture2D.h">
       <Filter>Graphics\GDI</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Graphics\Drawable\JDrawable.h">
-      <Filter>Graphics\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h">
-      <Filter>Graphics\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\String\JStringFunction.h">
       <Filter>String</Filter>
     </ClInclude>
@@ -167,12 +146,6 @@
     </ClInclude>
     <ClInclude Include="..\src\FileSystem\JFileSystem.h">
       <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Graphics\Drawable\JNinePatchDrawable.h">
-      <Filter>Graphics\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Graphics\Drawable\JStateListDrawable.h">
-      <Filter>Graphics\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="..\src\FileSystem\JStream.h">
       <Filter>FileSystem</Filter>

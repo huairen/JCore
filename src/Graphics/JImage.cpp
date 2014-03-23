@@ -64,7 +64,7 @@ bool JImage::LoadFromImageData(const uint8_t* pData, uint32_t nSize)
 	return m_pData != NULL;
 }
 
-uint32_t JImage::GetPixel(int x, int y) const
+uint32_t JImage::GetPixel(uint32_t x, uint32_t y) const
 {
 	if(x >= m_nWidth || y >= m_nHeight)
 		return 0;

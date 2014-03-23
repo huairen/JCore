@@ -15,10 +15,6 @@
     <ClCompile Include="..\src\DataType\JList.cpp" />
     <ClCompile Include="..\src\FileSystem\JFileSystem.cpp" />
     <ClCompile Include="..\src\FileSystem\JStream.cpp" />
-    <ClCompile Include="..\src\Graphics\Drawable\JBitmapDrawable.cpp" />
-    <ClCompile Include="..\src\Graphics\Drawable\JDrawable.cpp" />
-    <ClCompile Include="..\src\Graphics\Drawable\JNinePatchDrawable.cpp" />
-    <ClCompile Include="..\src\Graphics\Drawable\JStateListDrawable.cpp" />
     <ClCompile Include="..\src\Graphics\JRenderSystem.cpp" />
     <ClCompile Include="..\src\Graphics\JTexture2D.cpp" />
     <ClCompile Include="..\src\object\JObject.cpp" />
@@ -41,10 +37,6 @@
     <ClInclude Include="..\src\DataType\JList.h" />
     <ClInclude Include="..\src\FileSystem\JFileSystem.h" />
     <ClInclude Include="..\src\FileSystem\JStream.h" />
-    <ClInclude Include="..\src\Graphics\Drawable\JBitmapDrawable.h" />
-    <ClInclude Include="..\src\Graphics\Drawable\JDrawable.h" />
-    <ClInclude Include="..\src\Graphics\Drawable\JNinePatchDrawable.h" />
-    <ClInclude Include="..\src\Graphics\Drawable\JStateListDrawable.h" />
     <ClInclude Include="..\src\Graphics\JRenderSystem.h" />
     <ClInclude Include="..\src\Graphics\JTexture2D.h" />
     <ClInclude Include="..\src\JGlobalDefine.h" />

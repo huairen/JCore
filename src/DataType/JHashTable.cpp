@@ -34,10 +34,26 @@ JHashTable::~JHashTable()
 
 void JHashTable::Insert( const char* pKey, void* pValue )
 {
+	int nKey = MakeKey(pKey);
+
+	if(m_nTableSize > 0)
+	{
+		for (Node* itr = m_pTable[nKey % m_nTableSize]; itr; itr = itr->pNext)
+		{
+			if (itr->nKey == nKey)
+			{
+				if(itr->pKey != NULL && strcmp(itr->pKey, pKey) != 0)
+					continue;
+
+				itr->pValue = pValue;
+				return;
+			}
+		}
+	}
+
 	if(m_nCount >= m_nTableSize)
 		Resize(m_nCount + 1);
 
-	int nKey = MakeKey(pKey);
 	Node** prev = &m_pTable[nKey % m_nTableSize];
 
 	m_nCount++;
@@ -47,6 +63,28 @@ void JHashTable::Insert( const char* pKey, void* pValue )
 	node->pValue = pValue;
 	node->pNext = *prev;
 	*prev = node;
+}
+
+void* JHashTable::Remove(const char* pKey)
+{
+	if(m_nTableSize == 0)
+		return NULL;
+
+	int nKey = MakeKey(pKey);
+	for (Node* itr = m_pTable[nKey % m_nTableSize]; itr; itr = itr->pNext)
+	{
+		if (itr->nKey == nKey)
+		{
+			if(itr->pKey != NULL && strcmp(itr->pKey, pKey) != 0)
+				continue;
+
+			void *pVal = itr->pValue;
+			free((void*)itr->pKey);
+			delete itr;
+			return pVal;
+		}
+	}
+	return NULL;
 }
 
 void* JHashTable::Find( const char* pKey )
@@ -66,6 +104,16 @@ void* JHashTable::Find( const char* pKey )
 		}
 	}
 	return NULL;
+}
+
+JHashTable::Iterator JHashTable::Begin()
+{
+	if(m_nCount == 0)
+		return Iterator(0,0);
+
+	Iterator it(m_pTable, m_nTableSize);
+	++it;
+	return it;
 }
 
 int JHashTable::MakeKey( const char* pStr )
@@ -107,3 +155,52 @@ void JHashTable::Resize( int nSize )
 	m_pTable = table;
 }
 
+JHashTable::Iterator::Iterator(Node** pTable, int nTableSize)
+	: pPointer(0)
+	, pCurr(pTable)
+	, pEnd(pTable + nTableSize)
+{
+
+}
+
+JHashTable::Iterator& JHashTable::Iterator::operator++()
+{
+	if(pPointer != NULL)
+		pPointer = pPointer->pNext;
+
+	if(pPointer == NULL)
+	{
+		for (; pCurr!=pEnd && *pCurr==NULL; ++pCurr);
+		pPointer = *pCurr;
+	}
+
+	return *this;
+}
+
+JHashTable::Iterator JHashTable::Iterator::operator++(int)
+{
+	Iterator temp = *this;
+
+	if(pPointer != NULL)
+		pPointer = pPointer->pNext;
+
+	if(pPointer == NULL)
+	{
+		for (; pCurr!=pEnd || *pCurr==NULL; ++pCurr);
+		pPointer = *pCurr;
+	}
+
+	return temp;
+}
+
+bool JHashTable::Iterator::IsEnd() const
+{
+	return pCurr == pEnd;
+}
+
+void * JHashTable::Iterator::GetVaule() const
+{
+	if(pPointer)
+		return pPointer->pValue;
+	return 0;
+}

@@ -29,17 +29,35 @@ JPropertyInfo* JObject::FindProperty(const char *pPropertyName)
 bool JObject::SetProperty( const char *pPropertyName, const char* pValue )
 {
 	JPropertyInfo* pProp = FindProperty(pPropertyName);
-	if(pProp == NULL)
-		return false;
-	return pProp->SetData(this, pValue);
+	if(pProp != NULL)
+		return pProp->SetData(this, pValue);
+
+	JHashTable::Iterator it = m_Components.Begin();
+	for (; !it.IsEnd(); ++it)
+	{
+		JObject* pObj = (JObject*)it.GetVaule();
+		if(pObj != NULL && pObj->SetProperty(pPropertyName, pValue))
+			return true;
+	}
+
+	return false;
 }
 
 bool JObject::GetProperty( const char *pPropertyName, char* pBuffer, int nSize )
 {
 	JPropertyInfo* pProp = FindProperty(pPropertyName);
-	if(pProp == NULL)
-		return false;
-	return pProp->GetData(this, pBuffer, nSize);
+	if(pProp != NULL)
+		return pProp->GetData(this, pBuffer, nSize);
+
+	JHashTable::Iterator it = m_Components.Begin();
+	for (; !it.IsEnd(); ++it)
+	{
+		JObject* pObj = (JObject*)it.GetVaule();
+		if(pObj != NULL && pObj->GetProperty(pPropertyName, pBuffer, nSize))
+			return true;
+	}
+
+	return false;
 }
 
 void JObject::CopyProperty(JObject* pParent)
@@ -81,7 +99,18 @@ JObject* JObject::Clone()
 	return NULL;
 }
 
-void JObject::AddComponent(JObject* pObj)
+void JObject::AddComponent(const char *name, JObject* pObj)
 {
-	m_Components.PushBack(pObj);
+	m_Components.Insert(name, pObj);
+}
+
+void JObject::RemoveComponent(const char *name)
+{
+	JObject* pObj = (JObject*)m_Components.Remove(name);
+	delete pObj;
+}
+
+JObject* JObject::GetComponent(const char *name)
+{
+	return (JObject*)m_Components.Find(name);
 }

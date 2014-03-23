@@ -23,7 +23,7 @@ public:
 	bool LoadFromFile(const char* pFilename);
 	bool LoadFromImageData(const uint8_t* pData, uint32_t nSize);
 
-	uint32_t GetPixel(int x, int y) const;
+	uint32_t GetPixel(uint32_t x, uint32_t y) const;
 
 	inline uint8_t* GetData() const { return m_pData; }
 	inline uint32_t GetDataLen() const { return m_nDataSize; }
